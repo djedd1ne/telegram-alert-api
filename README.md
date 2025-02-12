@@ -49,7 +49,7 @@ pip install -r requirements.txt
 ```
 Run with Gunicorn
 ```shell
-gunicorn -w 4 -b 0.0.0.0:5000 wsgi:app
+gunicorn -w 1 -b 0.0.0.0:5000 wsgi:app
 ```
 Use this comand to get your IP address (Linux/MacOS) to use it with curl on Postman
 ```shell
