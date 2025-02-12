@@ -78,4 +78,7 @@ Response
 ```
 
 2. Using Postman
-   
+* Send "Warning" notification
+   ![Alt Text](images/Postman.png)	
+* The message on telegram group
+   ![Alt Text](images/telegram.jpg)
