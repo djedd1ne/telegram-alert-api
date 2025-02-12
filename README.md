@@ -22,8 +22,8 @@ Then, create a group on telegram,
 12. Copy the negative value to your .env file
 13. Your .env file must look like this 
 ```.env
-TELEGRAM_BOT_TOKEN = "YourApiToken"
-TELEGRAM_CHAT_ID = "YourGroupId"
+TELEGRAM_BOT_TOKEN =YourApiToken
+TELEGRAM_CHAT_ID =YourGroupId
 ```
 
 ### Clone and run (Linux/MacOS)
@@ -47,7 +47,32 @@ Install requirements
 ```shell
 pip install -r requirements.txt
 ```
-Run Web Server Gateway Interface
+Run with Gunicorn
 ```shell
-python wsgi.py
+gunicorn -w 4 -b 0.0.0.0:5000 wsgi:app
+```
+Use this comand to get your IP address (Linux/MacOS) to use it with curl on Postman
+```shell
+ifconfig
+```
+
+### Tests and Usage
+1. Using curl (On the same machine use 127.0.0.1:5000)
+* Send a valid notificaton
+```shell
+curl -X POST http://192.168.1.100:5000/notify \
+     -H "Content-Type: application/json" \
+     -d '{"Type": "Warning", "Name": "Backup Failure", "Description": "The backup failed due to a database problem"}'
+```
+Response
+```json
+{"The backup failed due to a database problem":"OK"}
+```
+* Retrieve all notifications
+```shell
+curl -X GET http://127.0.0.1:5000/notifications
+```
+Response 
+```json
+[{"Description":"The backup failed due to a database problem","Name":"Backup Failure","Type":"Warning"}]
 ```
