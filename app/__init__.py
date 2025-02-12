@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
-
+from app.services import send_to_telegram
+from app.config import Config
 
 app = Flask(__name__)
 
@@ -13,6 +14,11 @@ def create_notifications():
     
     #if valid, store data in notifications
     notifications.append(data)
+
+    #if Type is "Warning" send forward the message
+    if data['Type'] == "Warning":
+        message = f"WARNING: {data['Name']} - {data['Description']}"
+        send_to_telegram(message)
 
     return jsonify({data['Description']: "OK"}), 200
 
