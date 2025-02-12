@@ -60,7 +60,7 @@ ifconfig
 1. Using curl (On the same machine use 127.0.0.1:5000)
 * Send a valid notificaton
 ```shell
-curl -X POST http://192.168.1.100:5000/notify \
+curl -X POST http://127.0.0.1:5000/notify \
      -H "Content-Type: application/json" \
      -d '{"Type": "Warning", "Name": "Backup Failure", "Description": "The backup failed due to a database problem"}'
 ```
@@ -76,3 +76,6 @@ Response
 ```json
 [{"Description":"The backup failed due to a database problem","Name":"Backup Failure","Type":"Warning"}]
 ```
+
+2. Using Postman
+   
