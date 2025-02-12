@@ -15,3 +15,8 @@ def create_notifications():
     notifications.append(data)
 
     return jsonify({data['Description']: "OK"}), 200
+
+
+@app.route('/notifications', methods=['GET'])
+def get_notifications():
+    return jsonify(notifications), 200
